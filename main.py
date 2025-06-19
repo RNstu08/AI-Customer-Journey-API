@@ -1,4 +1,4 @@
-# main.py
+# main.py (Corrected Version)
 
 # 1. Library Imports
 import pandas as pd
@@ -13,17 +13,13 @@ from pydantic import BaseModel
 from engine.nba_engine import recommend_action
 from engine.personalization_engine import generate_personalized_email
 
-# --- CORRECTED: logger setup ---
+# --- CORRECTED: Set up a dedicated JSON logger to a writable directory ---
 def setup_logger():
-    # --- FIX: Create the logs directory here ---
-    # This ensures the directory exists before the handler tries to use it.
-    # exist_ok=True prevents an error if the directory already exists.
-    os.makedirs('logs', exist_ok=True)
-    
     logger = logging.getLogger('prediction_logger')
     logger.setLevel(logging.INFO)
     
-    handler = logging.FileHandler('logs/prediction_logs.jsonl', mode='a')
+    # Use the /tmp directory, which is writable in Hugging Face Spaces
+    handler = logging.FileHandler('/tmp/prediction_logs.jsonl', mode='a')
     formatter = logging.Formatter('%(message)s')
     handler.setFormatter(formatter)
     
@@ -33,7 +29,7 @@ def setup_logger():
     return logger
 
 prediction_logger = setup_logger()
-# --- END of corrected logger setup ---
+# --- END of correction ---
 
 
 # 2. Application Initialization
@@ -53,7 +49,7 @@ def load_resources():
     churn_model = joblib.load('models/churn_model_pipeline.joblib')
     customer_data = pd.read_csv('data/crm_data.csv').set_index('CustomerID')
     
-    # --- REMOVED: The directory creation logic is no longer needed here ---
+    # We no longer need to create the 'logs' directory
     
     print("Resources loaded successfully.")
 
