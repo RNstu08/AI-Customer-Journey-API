@@ -1,0 +1,36 @@
+# Python virtual environments
+venv/
+.venv/
+*.pyc
+__pycache__/
+
+# Jupyter Notebook specific files
+.ipynb_checkpoints/
+*.ipynb
+
+# Data files (these can be large and are often regenerated or managed separately)
+data/*.csv
+data/*.json
+data/*.parquet
+
+# Model files (these are binary and can be very large)
+models/*.joblib
+models/*.pkl
+models/*.h5
+models/*.tf
+models/*.pt
+
+# Logs
+*.log
+logs/
+
+# VS Code specific files
+.vscode/
+
+# Environment variables (sensitive info)
+.env
+.flaskenv
+
+# Operating System generated files
+.DS_Store
+Thumbs.db
