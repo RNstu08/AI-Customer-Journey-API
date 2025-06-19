@@ -1,0 +1,14 @@
+artifact_uri: file:///d:/Machine_learning/Projects/ai-customer-journey/mlruns/866067143111259131/89989b52bbfa42f8abc8006f13914614/artifacts
+end_time: 1750345937348
+entry_point_name: ''
+experiment_id: '866067143111259131'
+lifecycle_stage: active
+run_id: 89989b52bbfa42f8abc8006f13914614
+run_name: GradientBoosting_Robust_Run
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750345931242
+status: 3
+tags: []
+user_id: ranji

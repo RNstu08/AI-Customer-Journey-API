@@ -1,0 +1,72 @@
+{
+  "dataframe_split": {
+    "columns": [
+      "Age",
+      "Gender",
+      "Location",
+      "SubscriptionTier",
+      "Tenure",
+      "MonthlyRevenue",
+      "UsageFrequency",
+      "SupportTickets",
+      "LastInteraction"
+    ],
+    "data": [
+      [
+        36.0,
+        "Male",
+        "New York",
+        "Basic",
+        8.0,
+        24.97,
+        24.0,
+        0.0,
+        5.0
+      ],
+      [
+        45.0,
+        "Female",
+        "Houston",
+        "Basic",
+        14.0,
+        20.64,
+        15.0,
+        4.0,
+        29.0
+      ],
+      [
+        37.0,
+        "Female",
+        "San Jose",
+        "Standard",
+        35.0,
+        46.1,
+        39.0,
+        0.0,
+        47.0
+      ],
+      [
+        49.0,
+        "Male",
+        "San Antonio",
+        "Basic",
+        21.0,
+        20.41,
+        36.0,
+        0.0,
+        65.0
+      ],
+      [
+        25.0,
+        "Female",
+        "Chicago",
+        "Standard",
+        13.0,
+        43.32,
+        18.0,
+        3.0,
+        87.0
+      ]
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+artifact_location: file:///d:/Machine_learning/Projects/ai-customer-journey/mlruns/866067143111259131/models/m-b9f7261f25ce44298ef3c7b5975980ea/artifacts
+creation_timestamp: 1750345933185
+experiment_id: '866067143111259131'
+last_updated_timestamp: 1750345937283
+model_id: m-b9f7261f25ce44298ef3c7b5975980ea
+model_type: null
+name: churn_model
+source_run_id: 89989b52bbfa42f8abc8006f13914614
+status: 2
+status_message: null

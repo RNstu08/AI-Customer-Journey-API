@@ -1,0 +1,40 @@
+artifact_path: file:///d:/Machine_learning/Projects/ai-customer-journey/mlruns/866067143111259131/models/m-b9f7261f25ce44298ef3c7b5975980ea/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.12.10
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.7.0
+is_signature_from_type_hint: false
+mlflow_version: 3.1.0
+model_id: m-b9f7261f25ce44298ef3c7b5975980ea
+model_size_bytes: 143409
+model_uuid: m-b9f7261f25ce44298ef3c7b5975980ea
+prompts: null
+run_id: 89989b52bbfa42f8abc8006f13914614
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "double", "name": "Age", "required": true}, {"type": "string",
+    "name": "Gender", "required": true}, {"type": "string", "name": "Location", "required":
+    true}, {"type": "string", "name": "SubscriptionTier", "required": true}, {"type":
+    "double", "name": "Tenure", "required": true}, {"type": "double", "name": "MonthlyRevenue",
+    "required": true}, {"type": "double", "name": "UsageFrequency", "required": true},
+    {"type": "double", "name": "SupportTickets", "required": true}, {"type": "double",
+    "name": "LastInteraction", "required": true}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "float64", "shape": [-1,
+    2]}}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2025-06-19 15:12:13.233148'
