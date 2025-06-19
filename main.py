@@ -5,6 +5,7 @@ import pandas as pd
 import joblib
 import time
 import logging
+import os # Make sure os is imported
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
@@ -12,28 +13,27 @@ from pydantic import BaseModel
 from engine.nba_engine import recommend_action
 from engine.personalization_engine import generate_personalized_email
 
-# --- NEW: Set up a dedicated JSON logger ---
+# --- CORRECTED: logger setup ---
 def setup_logger():
-    # Create a logger
+    # --- FIX: Create the logs directory here ---
+    # This ensures the directory exists before the handler tries to use it.
+    # exist_ok=True prevents an error if the directory already exists.
+    os.makedirs('logs', exist_ok=True)
+    
     logger = logging.getLogger('prediction_logger')
     logger.setLevel(logging.INFO)
     
-    # Create a file handler and set the formatter to JSON
-    # 'a' means append mode
     handler = logging.FileHandler('logs/prediction_logs.jsonl', mode='a')
-    # Use a custom formatter if you need one, for now, just log the dict
     formatter = logging.Formatter('%(message)s')
     handler.setFormatter(formatter)
     
-    # Add the handler to the logger
-    # This check prevents adding handlers multiple times in dev with --reload
     if not logger.handlers:
         logger.addHandler(handler)
         
     return logger
 
 prediction_logger = setup_logger()
-# --- END of new logger setup ---
+# --- END of corrected logger setup ---
 
 
 # 2. Application Initialization
@@ -53,11 +53,8 @@ def load_resources():
     churn_model = joblib.load('models/churn_model_pipeline.joblib')
     customer_data = pd.read_csv('data/crm_data.csv').set_index('CustomerID')
     
-    # Create logs directory if it doesn't exist
-    import os
-    if not os.path.exists('logs'):
-        os.makedirs('logs')
-        
+    # --- REMOVED: The directory creation logic is no longer needed here ---
+    
     print("Resources loaded successfully.")
 
 
@@ -91,13 +88,11 @@ def get_prediction(customer_id: str):
     if churn_prob > 0.5:
         email = generate_personalized_email(customer_profile.to_dict(), action)
     
-    # --- EXPANDED LOGGING ---
-    # Log the features, prediction, and other metadata
     log_entry = {
         "timestamp": int(time.time()),
-        "model_version": "1.0.0", # Hardcoded for now, could be dynamic
+        "model_version": "1.0.0",
         "customer_id": customer_id,
-        "features": { # Log key features for drift analysis
+        "features": {
             "Tenure": customer_profile.get("Tenure"),
             "UsageFrequency": customer_profile.get("UsageFrequency"),
             "SupportTickets": customer_profile.get("SupportTickets"),
@@ -107,10 +102,9 @@ def get_prediction(customer_id: str):
             "churn_probability": round(churn_prob, 4),
             "recommended_action": action
         },
-        "ground_truth_churn": None # This would be updated later by a separate process
+        "ground_truth_churn": None
     }
     prediction_logger.info(log_entry)
-    # --- END OF EXPANDED LOGGING ---
 
     return PredictionResponse(
         customer_id=customer_id,
